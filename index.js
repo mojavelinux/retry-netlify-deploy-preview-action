@@ -8,11 +8,11 @@ run()
 async function run () {
   try {
     const client = new Netlify(core.getInput('netlify-token'))
-    const siteID = core.getInput('site-id') || resolveSiteID(
+    const siteID = core.getInput('site-id') || (await resolveSiteID(
       client,
       core.getInput('site-account') || context.repo.owner,
       core.getInput('site-name') || context.repo.repo
-    )
+    ))
     if (siteID) {
       const pullRequestID = core.getInput('pull-request-url').split('/').pop()
       const deploy = await findDeployForPullRequest(client, siteID, pullRequestID)
@@ -30,7 +30,7 @@ async function run () {
 }
 
 function resolveSiteID (client, accountSlug, siteName) {
-  return (client.listSitesForAccount({ account_slug: accountSlug, name: `^${siteName}$` })[0] || {}).id
+  return (client.listSitesForAccount({ account_slug: accountSlug, name: `^${siteName}$` })[0] || {}).site_id
 }
 
 async function findDeployForPullRequest (client, siteID, pullRequestID) {
