@@ -29,8 +29,8 @@ async function run () {
   }
 }
 
-function resolveSiteID (client, accountSlug, siteName) {
-  return (client.listSitesForAccount({ account_slug: accountSlug, name: `^${siteName}$` })[0] || {}).site_id
+async function resolveSiteID (client, accountSlug, siteName) {
+  return ((await client.listSitesForAccount({ account_slug: accountSlug, name: `^${siteName}$` }))[0] || {}).site_id
 }
 
 async function findDeployForPullRequest (client, siteID, pullRequestID) {
