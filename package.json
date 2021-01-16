@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Retry the Netlify deploy preview associated with a pull request",
   "author": "Dan Allen <dan.j.allen@gmail.com>",
-  "main": "./index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mojavelinux/retry-netlify-deploy-preview-action.git"
