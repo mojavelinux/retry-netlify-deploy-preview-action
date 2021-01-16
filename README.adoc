@@ -14,7 +14,7 @@ All inputs are required to use this action.
 
 [source,yaml]
 steps:
-- uses: mojavelinux/retry-netlify-deploy-preview-action@v0
+- uses: mojavelinux/retry-netlify-deploy-preview-action@v1.0.0
   with:
     netlify-token: ${{ secrets.NETLIFY_TOKEN }}
     site-id: abc123
