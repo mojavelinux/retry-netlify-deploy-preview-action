@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "bundle": "ncc build index.js -o dist"
+    "bundle": "ncc build index.js"
   },
   "dependencies": {
     "@actions/core": "~1.2",
