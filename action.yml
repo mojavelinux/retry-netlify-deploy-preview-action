@@ -10,5 +10,6 @@ inputs:
   pull-request-url:
     description: "The URL of the pull request to which the deploy preview is linked"
     required: true
+runs:
   using: "node12"
   main: "index.js"
