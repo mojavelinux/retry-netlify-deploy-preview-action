@@ -1,0 +1,22 @@
+{
+  "name": "retry-netlify-deploy-preview-action",
+  "version": "0.0.1",
+  "description": "Retry the Netlify deploy preview associated with a pull request",
+  "author": "Dan Allen <dan.j.allen@gmail.com>",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mojavelinux/retry-netlify-deploy-preview-action.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "bundle": "ncc build index.js -o dist"
+  },
+  "dependencies": {
+    "@actions/core": "~1.2",
+    "netlify": "~6.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.27.0"
+  }
+}

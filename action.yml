@@ -1,0 +1,14 @@
+name: Retry Netlify Deploy Preview
+description: Retry the Netlify deploy preview associated with a pull request
+inputs:
+  netlify-token:
+    description: The token used to access the Netlify API for your account
+    required: true
+  site-id:
+    description: The Netlify site ID for this repository
+    required: true
+  pull-request-url:
+    description: The URL of the pull request to which the deploy preview is linked
+    required: true
+  using: node12
+  main: index.js
