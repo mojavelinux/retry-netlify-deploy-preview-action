@@ -10,14 +10,11 @@
   },
   "license": "MIT",
   "scripts": {
-    "bundle": "ncc build index.js"
+    "bundle": "npx @vercel/ncc build"
   },
   "dependencies": {
     "@actions/core": "~1.2",
     "@actions/github": "~4.0",
     "netlify": "~6.1"
-  },
-  "devDependencies": {
-    "@vercel/ncc": "0.27.0"
   }
 }
