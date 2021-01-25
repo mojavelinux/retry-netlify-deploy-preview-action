@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "bundle": "npx @vercel/ncc build"
+    "bundle": "npx @vercel/ncc build && npx convert-action"
   },
   "dependencies": {
     "@actions/core": "~1.2",
