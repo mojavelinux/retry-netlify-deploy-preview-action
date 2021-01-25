@@ -29,7 +29,7 @@ jobs:
         git tag -d $TAG_NAME
         if [ -n $(git tag -l $MAJOR_TAG_NAME) ]; then
           git tag -d $MAJOR_TAG_NAME
-        end
+        fi
         git checkout -b release
         git add action.yml dist/index.js
         git commit --amend --no-edit action.yml dist/index.js
