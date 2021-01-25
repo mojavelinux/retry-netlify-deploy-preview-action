@@ -27,7 +27,7 @@ jobs:
     - name: Amend tag
       run: |
         git add action.yml dist/index.js
-        git commit --amend --no-edit
+        git commit --amend --no-edit action.yml dist/index.js
         git tag -a -f -m "version ${TAG_NAME##v}" $TAG_NAME $TAG_NAME^{}
         git push --force origin $TAG_NAME
         if [ -z $(git tag -l $MAJOR_TAG_NAME) ]; then
