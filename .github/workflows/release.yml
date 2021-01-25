@@ -14,7 +14,7 @@ jobs:
         echo "MAJOR_TAG_NAME=${TAG_NAME%%.*}" >> $GITHUB_ENV
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Install Node
+    - name: Install require Node version
       uses: actions/setup-node@v2
       with:
         node-version: '12'
@@ -26,13 +26,14 @@ jobs:
         git config user.email github-actions@github.com
     - name: Amend tag
       run: |
+        git tag -d $TAG_NAME
+        if [ -n $(git tag -l $MAJOR_TAG_NAME) ]; then
+          git tag -d $MAJOR_TAG_NAME
+        end
+        git checkout -b release
         git add action.yml dist/index.js
         git commit --amend --no-edit action.yml dist/index.js
-        git tag -a -f -m "version ${TAG_NAME##v}" $TAG_NAME $TAG_NAME^{}
+        git tag -a -m "version ${TAG_NAME##v}" $TAG_NAME
+        git tag -a -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME
         git push --force origin $TAG_NAME
-        if [ -z $(git tag -l $MAJOR_TAG_NAME) ]; then
-          git tag -a -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME
-        else
-          git tag -a -f -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME $MAJOR_TAG_NAME^{}
-        fi
         git push --force origin $MAJOR_TAG_NAME
