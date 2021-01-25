@@ -15,13 +15,14 @@ jobs:
         echo "TAG_NAME=${TAG_NAME}" >> $GITHUB_ENV
         echo "MAJOR_TAG_NAME=${TAG_NAME%%.*}" >> $GITHUB_ENV
     - name: Build and Tag Action
-      run: |
-        npm run bundle
+      run: npm run bundle
     - name: Amend Tag
       run: |
-        git add action.yml dist/index.js dist/*.wasm
-        git commit --amend --no-edit
-        git tag -a -f -m "release ${TAG_NAME##v}" $TAG_NAME $TAG_NAME^{}
-        git push --force origin $TAG_NAME
-        git tag -a -f -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME $MAJOR_TAG_NAME^{}
-        git push --force origin $MAJOR_TAG_NAME
+        node -v
+        find dist
+        #git add action.yml dist/index.js dist/*.wasm
+        #git commit --amend --no-edit
+        #git tag -a -f -m "release ${TAG_NAME##v}" $TAG_NAME $TAG_NAME^{}
+        #git push --force origin $TAG_NAME
+        #git tag -a -f -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME $MAJOR_TAG_NAME^{}
+        #git push --force origin $MAJOR_TAG_NAME
