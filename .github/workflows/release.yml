@@ -30,5 +30,9 @@ jobs:
         git commit --amend --no-edit
         git tag -a -f -m "version ${TAG_NAME##v}" $TAG_NAME $TAG_NAME^{}
         git push --force origin $TAG_NAME
-        git tag -a -f -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME $MAJOR_TAG_NAME^{}
+        if [ -z $(git tag -l $MAJOR_TAG_NAME) ]; then
+          git tag -a -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME
+        else
+          git tag -a -f -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME $MAJOR_TAG_NAME^{}
+        fi
         git push --force origin $MAJOR_TAG_NAME
