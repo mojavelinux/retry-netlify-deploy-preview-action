@@ -17,5 +17,5 @@ inputs:
     description: A regular expression pattern to match the site name when looking up the site-id
     required: false
 runs:
-  using: node12
+  using: node20
   main: index.js
