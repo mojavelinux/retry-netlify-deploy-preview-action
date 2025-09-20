@@ -31,8 +31,9 @@ jobs:
           git tag -d $MAJOR_TAG_NAME
         fi
         git checkout -b release
-        git add action.yml dist/index.js
-        git commit --amend --no-edit action.yml dist/index.js
+        git rm .gitignore
+        git add action.yml dist/index.js node_modules
+        git commit --amend --no-edit .gitignore action.yml dist/index.js node_modules
         git tag -a -m "version ${TAG_NAME##v}" $TAG_NAME
         git tag -a -m "relink ${MAJOR_TAG_NAME}" $MAJOR_TAG_NAME
         git push --force origin $TAG_NAME
