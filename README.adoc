@@ -1,0 +1,24 @@
+= retry-netlify-deploy-preview-action
+
+Retry the Netlify deploy preview associated with a pull request.
+Could be triggered from a comment action or a workflow dispatch.
+
+== Inputs
+
+`netlify-token`:: The token used to access the Netlify API for your account. *(required)*
+`pull-request-url`:: The URL of the pull request to which the deploy preview is linked. *(required)*
+`site-id`:: The Netlify site ID for this repository; auto-detected if not specified.
+`site-account`:: The slug of the Netlify account to use when looking up the site ID.
+`site-name`:: A regular expression pattern to match the site name when looking up the site ID.
+
+== Usage
+
+[source,yaml]
+steps:
+- uses: mojavelinux/retry-netlify-deploy-preview-action@v1
+  with:
+    netlify-token: ${{ secrets.NETLIFY_TOKEN }}
+    pull-request-url: ${{ github.event.issue.pull_request.url }}
+    site-name: abc123
+
+TIP: You should store your Netlify token as a https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets[secret] in your GitHub repository.
